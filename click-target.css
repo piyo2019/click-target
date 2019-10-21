@@ -1,0 +1,127 @@
+body{
+     background: linear-gradient(90deg,rgb(137, 144, 214),rgb(153, 180, 226),rgb(171, 200, 224),rgb(171, 210, 224),rgb(171, 200, 224),rgb(153, 180, 226),rgb(137, 144, 233)); /* グラデーション */
+    color: #231647; /* 文字の色 */
+    width: 650px; /* */
+    margin-right: auto;
+    margin-left: auto;
+}
+
+button{
+    padding: 5px 20px;
+    background-color: #9a38c7;
+    color: #FDFFFF;
+    border-color: rgb(122, 75, 118);
+    border-style: solid;
+    border-radius: 20px;
+}
+
+input{
+    height: 25px;
+}
+
+div {
+    display: inline-block;
+     _display: inline;
+    }
+
+ /* 的 */   
+.circle{
+   float:left; /*左に回り込み*/
+    margin:10px; /* 枠の外の空き /*/
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border-style: solid;
+    border-width: medium;
+    text-align:center; /* 文字を左右の中央に */
+    line-height: 80px; /* 行の高さ　heightと合わせる */
+    font-size: 40px;
+}
+
+.canSee{
+    color:#5a544b; /* はっきりわかる色にする */
+    background: linear-gradient(45deg,rgb(222, 184, 135),rgb(255, 250, 205)); 
+    border-color:tan; 
+}
+
+.cannotSee{
+    color:silver; /* background と同じにすること */
+    background: silver; 
+    border-color: darkgrey;
+}
+
+/* タイトルのh1タグ */
+#title{
+    font-style: italic;
+    color:darkcyan;
+    font-size: 40px;
+}
+
+/* スタートボタン */
+#start-button{
+    padding: 10px 20px;
+    background-color:mediumvioletred; /* ver2では crimson  */
+    border-color:palevioletred; /* ver2では mediumvioletred  */
+    border-style: solid;
+    border-radius: 40px;
+    margin-right: 30px;
+    font-size: 1.18em; /* 1em は 標準（h4（16px？））の大きさ */
+    font-weight: bold;
+}
+
+/* シュートボタン */
+#shoot-button{
+    background-color:mediumvioletred; /* ver2では crimson  */
+    border-color:palevioletred; /* ver2では mediumvioletred  */
+    border-style: solid;
+    font-size: 1.125em; /* 1em は 標準（h4（16px？））の大きさ */
+    font-weight: bold;
+}
+
+#windowNumber{
+    background-color: beige;
+    width: 40px;
+    height: 20px;
+    margin-right: 40px;
+}
+
+#number-list{
+    width:300;
+}
+
+#target-number-list{
+    background-color: beige;
+    width: 100px;
+    height: 20px;
+    text-align: left;
+}
+
+#shoot-number-list{
+    display: inline-block; /* 幅や高さを固定で確保するため */
+    background-color: beige;
+    width: 160x;
+    height: 20px;
+    text-align: left;
+}
+
+/* 中止のボタン */
+#game-stop{
+    background: lightslategrey; 
+    border-color: grey;
+    font-size: 0.7em; /* 0.8em はh5くらい？ */
+}
+
+/* #result-area */  
+.before{
+    display: none; /* 見せないし，スペースも確保しない */
+}
+
+.after{
+    padding: 5px 0px;
+    background-color: beige;
+    text-align: center;
+    border-color:steelblue;
+    border-style: double;
+}
+
+/* --- click-target.css ここまで ------*/

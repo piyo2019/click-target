@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <!-- cssファイルのリンクとタイトル -->
+    <link rel="stylesheet" href="click-target.css">
+    <title>click-target</title>
+</head>
+
+<body>
+    <h5 align = "right" > <a href="about.html" target="_blank" >Click-Target について</a></h5> <!--説明のページへリンク -->
+    <h1 id = "title" align="center">Click-Target</h1>
+
+    <h4 align="center">「シュート」をクリックして3つの的を裏返そう。<br>
+        シュートした数字と同じ数字の的が裏返ります。
+        チャンスは5回！</h4>
+
+    <p align="center">
+        <button id="start-button">ゲームスタート</button>
+        <button id="tn-button">的の数字を変える</button> 
+        <button id="game-stop" >ゲーム中止</button>
+        
+    </p>
+    
+    <table id=target-set align="center">
+        <tr>
+            <td id="target1" class="circle canSee">1</td>
+            <td id="target2" class="circle canSee">2</td>
+            <td id="target3" class="circle canSee">3</td>
+        </tr>
+    </table>
+
+    <table align="center">
+        <tr>
+            <td id="windowNumber" align="center"></td>
+            <td> <button id="shoot-button">シュート</button></td>
+
+        </tr>
+    </table>
+
+    <h5 id="number-list" align="center">
+        <span id="target-number-list">的の数字：1 2 3</span>
+        <span>　　</span>
+        <span id="shoot-number-list">シュートした数字：</span>
+        </table>
+    </h5>
+
+    <h3 id="result-area" align="center" class = "before">  </h3>
+
+    <p align="center">
+    <button id="retry" class = "before">もう1回する</button> 
+    </p>
+
+    <!-- jsファイルの読みこみ  -->
+    <script src="click-target.js"></script> 
+
+</body>
+
+</html>
