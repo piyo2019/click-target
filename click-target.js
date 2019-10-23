@@ -1,10 +1,11 @@
 /**
  * click-target.js
  *   2019/08/04: 作成（click-target_mwc2019/ 内のコード）　
+ * 【修正履歴】
  *   2019/10/22: 変数宣言の修正（varをconstまたはletにした）
  *      ・ tn はletで宣言（ const で宣言すると動かなかった）
  *      ・ tn1~tn3は const で宣言（let でないとダメかと思ったが， 動いた
- *        
+ *   2019/10/23：変数tnの宣言と代入の行を修正（まとめてconstで変数宣言）    
  */
 const resultArea =  document.getElementById('result-area');
 const retry =  document.getElementById('retry');
@@ -19,8 +20,7 @@ let fl3 = 1; //target3が表なら1，裏なら0
 const kaitensokudo = 40; // 的が裏返る速さはここで調整（setInterval の間隔）
 
 // 的の数字  --- (new Date() の1桁目～3桁目が的の番号になる)
-let tn = new Date(); 
-tn = tn.getTime();
+const tn = new Date().getTime(); 
 const tn1 = tn % 10; // target1の数字
 const tn2 = Math.floor(tn / 10) % 10; // target2の数字
 const tn3 = Math.floor(tn / 100) % 10; // target3の数字
