@@ -4,7 +4,8 @@
  * 
  * 　2019/10/23:　ver2作成
  *      ・コードの修正：変数宣言の修正，同じようなコードの合理化など
- *      ・難易度の調節と難易度選択ボタンの設定 * 
+ *      ・難易度の調節と難易度選択ボタンの設定 
+ *      ・窓の数字が止まらなくなるバグを修正
  * 
  */
 'use strict';
@@ -29,7 +30,7 @@ const kaitensokudo = 40; // 的が裏返る速さはここで調整（setInterva
 
 //　窓の数字を出すスピード
 let windowNumberSpeed = null; // 窓の数字を出すスピード。EasyHard[]のいずれかを代入する（setInterval の間隔, 応募時は50）200～だと狙える？
-const EasyHard = [300, 200, 100];// 難易度ごとのwindowNumberSpeedの値（順に,easy,normal,hard）：ラジオボタン左からEasyHard[0],~に入る。
+const EasyHard = [280, 180, 80];// 難易度ごとのwindowNumberSpeedの値（順に,easy,normal,hard）：ラジオボタン左からEasyHard[0],~に入る。
 const EasyHardRadio = document.getElementsByName("easy-hard-radio");
 
 // 的の数字  --- (new Date().getTime() の1桁目～3桁目が的の番号になる)
@@ -47,13 +48,15 @@ document.getElementById('target-number-list').innerText = '的の数字：' + ta
 //  スタートボタンを押したらカウンタースタート
 let windowNumber = 0;
 let windowTimer = null;
+let startClick = 0;
 document.getElementById('start-button').onclick = function () {
-    for(let i = 0; i <EasyHardRadio.length; i++){
-        if(EasyHardRadio[i].checked){
-          windowNumberSpeed = EasyHard[i];
+    if (startClick === 0 && nokoriKai !== 0) {
+        for (let i = 0; i < EasyHardRadio.length; i++) {
+            if (EasyHardRadio[i].checked) {
+                windowNumberSpeed = EasyHard[i];
+            }
         }
-      }
-    if (nokoriKai !== 0) {
+        startClick += 1;
         windowTimer = setInterval(windowNumberShow, windowNumberSpeed); //　数字を出すスピードはwindowNumberSpeedで調節
     }
 }
