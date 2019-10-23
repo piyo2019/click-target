@@ -1,34 +1,38 @@
 /**
  * click-target.js
- *     2019/08/04: 作成（click-target_mwc2019/ 内のコード）　
- *   
+ *   2019/08/04: 作成（click-target_mwc2019/ 内のコード）　
+ * 【修正履歴】
+ *   2019/10/22: 変数宣言の修正（varをconstまたはletにした）
+ *      ・ tn はletで宣言（ const で宣言すると動かなかった）
+ *      ・ tn1~tn3は const で宣言（let でないとダメかと思ったが， 動いた
+ *   2019/10/23：変数tnの宣言と代入の行を修正（まとめてconstで変数宣言）    
  */
-var resultArea =  document.getElementById('result-area');
-var retry =  document.getElementById('retry');
+'use strict';
+const resultArea =  document.getElementById('result-area');
+const retry =  document.getElementById('retry');
 
-var nokoriKai = 5;
-var shootNumber = null;
-var shootNumberList = '';
-var fl1 = 1; //target1が表なら1，裏なら0
-var fl2 = 1; //target2が表なら1，裏なら0
-var fl3 = 1; //target3が表なら1，裏なら0
+let nokoriKai = 5;
+let shootNumber = null;
+let shootNumberList = '';
+let fl1 = 1; //target1が表なら1，裏なら0
+let fl2 = 1; //target2が表なら1，裏なら0
+let fl3 = 1; //target3が表なら1，裏なら0
 
-var kaitensokudo = 40; // 的が裏返る速さはここで調整（setInterval の間隔）
+const kaitensokudo = 40; // 的が裏返る速さはここで調整（setInterval の間隔）
 
 // 的の数字  --- (new Date() の1桁目～3桁目が的の番号になる)
-var tn = new Date();
-tn = tn.getTime();
-var tn1 = tn % 10; // target1の数字
-var tn2 = Math.floor(tn / 10) % 10; // target2の数字
-var tn3 = Math.floor(tn / 100) % 10; // target3の数字
+const tn = new Date().getTime(); 
+const tn1 = tn % 10; // target1の数字
+const tn2 = Math.floor(tn / 10) % 10; // target2の数字
+const tn3 = Math.floor(tn / 100) % 10; // target3の数字
 document.getElementById('target1').innerText = tn1;
 document.getElementById('target2').innerText = tn2;
 document.getElementById('target3').innerText = tn3;
 document.getElementById('target-number-list').innerText = '的の数字：' + tn1 + ' ' + tn2 + ' ' + tn3;
 
 //  スタートボタンを押したらカウンタースタート
-var windowNumber = 0;
-var windowTimer = null;
+let windowNumber = 0;
+let windowTimer = null;
 document.getElementById('start-button').onclick = function () {
     if (nokoriKai !== 0) {
         windowTimer = setInterval(windowNumberShow, 50); //　数字を出すスピードはここで調節---クリックしたときに出てた数字と取得するwindowNumberのズレがごまかせるよう速めに設定する！
@@ -90,8 +94,8 @@ function windowNumberShow() {
 function rotateTarget1() {
 
     fl1 == 0;
-    var timer1 = null; // タイマーのID
-    var kaitenkaku = 0;
+    let timer1 = null; // タイマーのID
+    let kaitenkaku = 0;
     function rotate() {
         kaitenkaku = kaitenkaku + 6;
         //半周回ったらストップ
@@ -114,8 +118,8 @@ function rotateTarget1() {
 // 的2を回転
 function rotateTarget2() {
     fl2 == 0;
-    var timer2 = null; // タイマーのID
-    var kaitenkaku = 0;
+    let timer2 = null; // タイマーのID
+    let kaitenkaku = 0;
     function rotate() {
         kaitenkaku = kaitenkaku + 6;
         //半周回ったらストップ
@@ -138,8 +142,8 @@ function rotateTarget2() {
 // 的3を回転
 function rotateTarget3() {
     fl3 == 0;
-    var timer3 = null; // タイマーのID
-    var kaitenkaku = 0;
+    let timer3 = null; // タイマーのID
+    let kaitenkaku = 0;
     function rotate() {
         kaitenkaku = kaitenkaku + 6;
         //半周回ったらストップ
@@ -161,8 +165,6 @@ function rotateTarget3() {
 
 // ゲームの結果を表示する関数
 function result() {
-    // var resultArea =  document.getElementById('result-area');  //　変数宣言は全体の冒頭におくことにした
-    //var retry =  document.getElementById('retry');  //　変数宣言は全体の冒頭におくことにした
     resultArea.classList.remove('before');
     resultArea.classList.add('after');
     if (fl1 + fl2 + fl3 === 0) {
