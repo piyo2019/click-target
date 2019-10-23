@@ -1,22 +1,11 @@
 /**
  * click-target.js
- *   2019/08/04: 作成（click-target_mwc2019/ 内のコード）　
- * 【修正履歴】
- *   2019/10/22: 変数宣言の修正（varをconstまたはletにした）
- *      ・ tn はletで宣言（ const で宣言すると動かなかった）
- *      ・ tn1~tn3は const で宣言（let でないとダメかと思ったが， 動いた
- *   2019/10/23：変数tnの宣言と代入の行を修正（まとめてconstで変数宣言）
- *  -----
- *    201910/23:関数rotateTargetの合理化
- *      ・配列を利用して同じようなものをまとめた ＆まとめるために配列化
- *          rotateTarget1～3 を rotateTarget[1]~[3] 
- *          fl1～3 を fl[1]~[3]
- *          timer1～3 を timer[1]~[3]
- *          target1～3 を target[1]~[3]
- *          tn1～3 を targetNumber[1]~[3] ※変数名注意
- *       ・数字を出すスピードを，変数 windowNumberSpeed として定義
- *             クリックしたときに出てた数字と取得するwindowNumberのズレがごまかせるよう速め（50）に設定したが，速すぎる
- *        ・変数名の変更：tn　→　tnBase 
+ *   2019/08/04: 作成（click-target_mwc2019/ 内のコード）　--これをver1とします
+ * 
+ * 　2019/10/23:　ver2作成
+ *      ・コードの修正：変数宣言の修正，同じようなコードの合理化など
+ *      ・難易度の調節と難易度選択ボタンの設定 * 
+ * 
  */
 'use strict';
 const resultArea =  document.getElementById('result-area');
@@ -37,9 +26,13 @@ let rotateTarget = []; //関数rotateTarget[i](i=1～3)を入れる配列
 let timer = [];// rotateTarget[i](i=1～3)で使うtimer[i]の配列
 
 const kaitensokudo = 40; // 的が裏返る速さはここで調整（setInterval の間隔）
-const windowNumberSpeed = 50; // 窓の数字を出すスピード
 
-// 的の数字  --- (new Date() の1桁目～3桁目が的の番号になる)
+//　窓の数字を出すスピード
+let windowNumberSpeed = null; // 窓の数字を出すスピード。EasyHard[]のいずれかを代入する（setInterval の間隔, 応募時は50）200～だと狙える？
+const EasyHard = [300, 200, 100];// 難易度ごとのwindowNumberSpeedの値（順に,easy,normal,hard）：ラジオボタン左からEasyHard[0],~に入る。
+const EasyHardRadio = document.getElementsByName("easy-hard-radio");
+
+// 的の数字  --- (new Date().getTime() の1桁目～3桁目が的の番号になる)
 const tnBase = new Date().getTime(); 
 const targetNumber =[ ,//targetNumber[0]は定義しない
     tnBase % 10, // targetNumber[1] :target1の数字
@@ -55,6 +48,11 @@ document.getElementById('target-number-list').innerText = '的の数字：' + ta
 let windowNumber = 0;
 let windowTimer = null;
 document.getElementById('start-button').onclick = function () {
+    for(let i = 0; i <EasyHardRadio.length; i++){
+        if(EasyHardRadio[i].checked){
+          windowNumberSpeed = EasyHard[i];
+        }
+      }
     if (nokoriKai !== 0) {
         windowTimer = setInterval(windowNumberShow, windowNumberSpeed); //　数字を出すスピードはwindowNumberSpeedで調節
     }
@@ -80,11 +78,12 @@ document.getElementById('tn-button').onclick = function () {
 };
 
 //　 窓に0～9の数字を出す & シュートしたときの処理
-function windowNumberShow() {
+function windowNumberShow() {    
     if ((nokoriKai === 0) || (fl[1] + fl[2] + fl[3] === 0)) {
         clearInterval(windowTimer);
         setTimeout(result, 1000); // 1秒まって結果を表示
     }
+    windowNumber = (windowNumber + 1) % 10;
     document.getElementById('windowNumber').innerText = windowNumber;
     document.getElementById("shoot-button").onclick = function () {
         if (nokoriKai === 0) {
@@ -102,7 +101,6 @@ function windowNumberShow() {
             }
          }
     };
-    windowNumber = (windowNumber + 1) % 10;
 }
 
 // 的を回転させる関数
