@@ -1,31 +1,11 @@
 /**
  * click-target.js
- *   2019/08/04: 作成（click-target_mwc2019/ 内のコード）　
- * 【修正履歴】
- *   2019/10/22: 変数宣言の修正（varをconstまたはletにした）
- *      ・ tn はletで宣言（ const で宣言すると動かなかった）
- *      ・ tn1~tn3は const で宣言（let でないとダメかと思ったが， 動いた
- *   2019/10/23-1：変数tnの宣言と代入の行を修正（まとめてconstで変数宣言）
- *  -----
- *   201910/23-2 :関数rotateTargetの合理化
- *      ・配列を利用して同じようなものをまとめた ＆まとめるために配列化
- *          rotateTarget1～3 を rotateTarget[1]~[3] 
- *          fl1～3 を fl[1]~[3]
- *          timer1～3 を timer[1]~[3]
- *          target1～3 を target[1]~[3]
- *          tn1～3 を targetNumber[1]~[3] ※変数名注意
- *       ・数字を出すスピードを，変数 windowNumberSpeed として定義 
- *             クリックしたときに出てた数字と取得するwindowNumberのズレがごまかせるよう速め（50）に設定したが，速すぎる
- *        ・変数名の変更：tn　→　tnBase 
- * ---
- *    2019/10/23-3 :難易度の調節と修正
- *      ・関数windowNumberShow()をかく位置の変更
- * 　         windowNumberの更新の処理（windowNumber = (windowNumber + 1) % 10; ）の行を上にした
- *           表示やシュート後の処理の後にwindowNumberを更新　→　windowNumberを更新してから表示等の処理 
- *         ※クリックのタイミングとshootNumberのずれがなくなった（小さくなった？）ような気がする
- *      ・難易度の設定（3種類）
- *          index.html の修正（ラジオボタンの設置）＆右上に「-ver.2-」の表記
- *          index.js の修正（ラジオボタンのチェックに応じてwindowNumberSpeedを変える）
+ *   2019/08/04: 作成（click-target_mwc2019/ 内のコード）　--これをver1とします
+ * 
+ * 　2019/10/23:　ver2作成
+ *      ・コードの修正：変数宣言の修正，同じようなコードの合理化など
+ *      ・難易度の調節と難易度選択ボタンの設定 * 
+ * 
  */
 'use strict';
 const resultArea =  document.getElementById('result-area');
