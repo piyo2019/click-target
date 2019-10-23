@@ -7,6 +7,7 @@
  *      ・ tn1~tn3は const で宣言（let でないとダメかと思ったが， 動いた
  *   2019/10/23：変数tnの宣言と代入の行を修正（まとめてconstで変数宣言）    
  */
+'use strict';
 const resultArea =  document.getElementById('result-area');
 const retry =  document.getElementById('retry');
 
