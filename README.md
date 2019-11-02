@@ -39,4 +39,5 @@ index.js の修正（ラジオボタンのチェックに応じてwindowNumberSp
 ・windowNumberSpeeを決める部分をかく場所を変えた<br>
 ・startClick変数を定義し，2回目以降のクリックでは何もしないようにした
 
-
+##### 2019/10/23：GitHub Pages にアップしました
+https://piyo2019.github.io/click-target/
